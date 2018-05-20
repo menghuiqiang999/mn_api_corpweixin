@@ -1,33 +1,36 @@
 /**
  * Created by Administrator on 2018/4/25.
  */
-"use strict";
-var page_name="getkey of redis";
-var errplace=require('moonlight_function_errplace');
-try{
+'use strict';
+var pageName = "getkey of redis";
 
 
-    var Redis=require("ioredis");
-    var redis=new Redis();
+var Redis = require("ioredis");
+var redis = new Redis();
 
-    var getkey =function(key,value_callback){
+/**
+ *
+ * @param key - key save in the redis
+ * @param value_callback - value get back
+ * @example
+ * get(key,function(err,result){
+ *      ......
+ * });
+ */
+var getkey = function(key,value_callback) {
 
-        redis.exists(key).then(function(exists_key){
-                console.log(page_name+ "exists_key:"+exists_key);
-                if (exists_key){
-                    redis.get(key).then(function(result){
-                        console.log(page_name+":value in the redis by key:"+result);
-                        value_callback(result);
-                    })
-                }
-                else{
-                    console.log(page_name +":doesn't exist the value by the key:" + key);
-                    value_callback(null);
-                }
-        })
-    }
+    redis.exists (key).then( function (exists_key) {
+            console.log(pageName + "exists_key:" + exists_key);
+            if (exists_key){
+                redis.get(key).then(function(result){
+                    console.log(pageName+":value in the redis by key:"+result);
+                    value_callback(null,result);
+                })
+            }
+            else{
+                value_callback( 'Haven\'t found the key!',null);
+            };
+    });
+};
 
-}catch(err){
-    errplace(err,page_name);
-}
-module.exports=getkey;
+module.exports = getkey;

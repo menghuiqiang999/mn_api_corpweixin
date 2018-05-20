@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/4/26.
  * 
  */
-"use strict";
-var page_name="com";
+'use strict';
+var pageName="com";
 
 var common = require ('./common/common');
 exports.common = common;

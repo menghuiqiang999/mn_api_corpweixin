@@ -8,22 +8,14 @@
  *      ......
  * };
  */
-"use strict";
-var page_name="corpweixin of moonlight_api";
-var catcherr=require('moonlight_function_errplace');
+'use strict';
+var pageName='corpweixin bus';
 
 
+var getAccessToken = require('./lib/access_token/get_access_token');
+exports.getAccessToken=getAccessToken;
 
-var access_token=require('./lib/access_token');
-exports.accessToken=access_token;
-//----------------------------------------------------------------------------------------------------------------------
 /*
-var get_access_token=require('./lib/get_access_token');
-exports.get_access_token=get_access_token;
-
-var refresh_access_token=require('./lib/refresh_access_token');
-exports.refresh_access_token=refresh_access_token;
-*/
 //----------------------------------------------------------------------------------------------------------------------
 //  user
 var get_user=require('./lib/get_user');
@@ -50,8 +42,14 @@ exports.get_dept_user_list_detail=get_dept_user_list_detail;
 var get_userinfo_by_code=require('./lib/get_userinfo_by_code');
 exports.get_userinfo_by_code=get_userinfo_by_code;
 
+*/
+//----------------------------------------------------------------------------------------------------------------------
+//receiveMsg
+var receiveMsg = require ('./lib/receive_msg');
+exports.receiveMsg = receiveMsg;
 
 //----------------------------------------------------------------------------------------------------------------------
-//verifyUrl
-var verifyUrl = require ('./lib/verify_url');
-exports.verifyUrl = verifyUrl;
+//sendMsg
+
+var sendMsg = require ('./lib/send_msg');
+exports.sendMsg = sendMsg ;

@@ -1,21 +1,24 @@
 /**
  * Created by Administrator on 2018/4/25.
  */
-var page_name="setex_key of redis";
-var errplace=require('moonlight_function_errplace');
-
-try{
-
-    var Redis=require("ioredis");
-    var redis=new Redis();
-
-    var setex_key =function(key,seconds,value){
-
-        redis.setex(key,seconds,value);
-    };
+'use strict';
+var pageName = "setex_key of redis";
 
 
-}catch(err){
-    errplace(err,page_name);
-}
-module.exports= setex_key;
+
+
+var Redis = require("ioredis");
+var redis = new Redis();
+
+/**
+ *
+ * @param key
+ * @param seconds - Expire time
+ * @param value
+ */
+var setex_key  = function(key,seconds,value){
+
+    redis.setex (key,seconds,value);
+};
+
+module.exports = setex_key;

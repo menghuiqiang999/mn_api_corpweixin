@@ -19,6 +19,8 @@ var xml2json=function(xml,callback){
     parseString(xml, function (err, result) {
         if (err) {
             console.log(pageName,'There is an error form parseString in xml2json of corpweixin_robot');
+            callback(err,null);
+            return;
         };
         console.log (JSON.stringify(result));
         callback(null,result);
