@@ -9,3 +9,7 @@ exports.get=get;
 
 var post=require('./lib/post');
 exports.post=post;
+
+
+var postBuffer = require('./lib/post_buffer');
+exports.postBuffer=postBuffer;

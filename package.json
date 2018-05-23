@@ -1,6 +1,6 @@
 {
   "name": "mn_api_corpweixin",
-  "version": "1.0.11",
+  "version": "1.1.2",
   "description": "Rewquire: moonlight_function_errplace use: npm install moonlight_function_errplace\r                Require: moonlight_function_common use: npm install moonlight_function_common",
   "main": "corpweixin.js",
   "directories": {
@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "mn_fun_comm": "^1.2.9",
+    "formstream": "^1.1.0",
+    "mn_fun_comm": "^1.2.14",
     "moonlight_function_common": "^1.1.2",
     "moonlight_function_errplace": "^1.0.1",
+    "request": "^2.86.0",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {},

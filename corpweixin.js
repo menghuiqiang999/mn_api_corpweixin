@@ -44,9 +44,18 @@ exports.get_userinfo_by_code=get_userinfo_by_code;
 
 */
 //----------------------------------------------------------------------------------------------------------------------
+//material
+var material = require('./lib/material');
+exports.material = material ;
+//----------------------------------------------------------------------------------------------------------------------
 //receiveMsg
 var receiveMsg = require ('./lib/receive_msg');
 exports.receiveMsg = receiveMsg;
+//----------------------------------------------------------------------------------------------------------------------
+//sendMedia
+var sendMedia = require ('./lib/send_media');
+exports.sendMedia = sendMedia ;
+
 
 //----------------------------------------------------------------------------------------------------------------------
 //sendMsg

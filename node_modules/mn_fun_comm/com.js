@@ -11,6 +11,10 @@ exports.common = common;
 var crypto = require('./crypto/crypto');
 exports.crypto = crypto;
 
+var http = require('./http/http');
+exports.http = http;
+
+
 var https = require('./https/https');
 exports.https = https;
 

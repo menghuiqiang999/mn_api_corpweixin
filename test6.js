@@ -33,7 +33,7 @@ var content1 = '好好学习,天天向上，这会是可以了';
 //var content = decodeURIComponent(content1);
 var content = content1;
 //console.log (pageName, ':input content:', content);
-
+/*
 var postData = {
     "touser"  : "MengHuiQiang" ,
     "toparty" : 1 ,
@@ -41,6 +41,19 @@ var postData = {
     "agentid" : 1000004 ,
     "text" : { content : content  }
 };
+*/
+
+var mediaId = '3a-7dvmwwcZg1TGHTMGNjeWWw2HLQvj4Vqktu-KwFAr7Ylf945wdWuwoYqkWWM5Ys';
+var postData = {
+    "touser"  : "MengHuiQiang" ,
+    "toparty" : 1 ,
+    "msgtype" : "image" ,
+    "agentid" : 1000004 ,
+    "image" : { "media_id" : mediaId}
+
+};
+
+
 var contentData = JSON.stringify(postData) ;
 //var contentData = '{ "touser"  : "MengHuiQiang" , "toparty" : 1 ,  "msgtype" : "text" , "agentid" : 1000004 , "text" : { content : "好好学习" } }';
 //var contentData = querystring.stringify(postData ,';' ,'=' );
