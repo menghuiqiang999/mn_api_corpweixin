@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/5/14.
  */
 'use strict';
-var pageName = 'test4';
+var pageName = 'test_get_access_token';
 
 var corpweixin = require ('./corpweixin');
 var getAccessToken = corpweixin.getAccessToken;

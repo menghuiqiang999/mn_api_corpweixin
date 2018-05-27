@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/5/18.
  */
 'use strict';
-var pageName = 'test6';
+var pageName = 'test_send_msg';
 
 
 const corpweixin = require ('./corpweixin');
@@ -28,12 +28,10 @@ var corpInfo = {
     encodingAesKey : encodingAesKey
 };
 var content1 = '好好学习,天天向上，这会是可以了';
-//var content = querystring.stringify('aaaaa好好') ;
- //var content = encodeURIComponent(content1);
-//var content = decodeURIComponent(content1);
+
 var content = content1;
 //console.log (pageName, ':input content:', content);
-/*
+
 var postData = {
     "touser"  : "MengHuiQiang" ,
     "toparty" : 1 ,
@@ -41,8 +39,8 @@ var postData = {
     "agentid" : 1000004 ,
     "text" : { content : content  }
 };
-*/
 
+/*
 var mediaId = '3a-7dvmwwcZg1TGHTMGNjeWWw2HLQvj4Vqktu-KwFAr7Ylf945wdWuwoYqkWWM5Ys';
 var postData = {
     "touser"  : "MengHuiQiang" ,
@@ -52,16 +50,8 @@ var postData = {
     "image" : { "media_id" : mediaId}
 
 };
-
+*/
 
 var contentData = JSON.stringify(postData) ;
-//var contentData = '{ "touser"  : "MengHuiQiang" , "toparty" : 1 ,  "msgtype" : "text" , "agentid" : 1000004 , "text" : { content : "好好学习" } }';
-//var contentData = querystring.stringify(postData ,';' ,'=' );
-//var contentData = querystring.stringify(postData);
-//var contentData = encodeURIComponent(postData);
-//console.log(pageName, ':contentData:', contentData);
-
-
-
 
 sendMsg(corpInfo,contentData);

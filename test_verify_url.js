@@ -1,77 +1,56 @@
 /**
- * Created by Administrator on 2018/5/12.
- * https://work.weixin.qq.com/api/doc#12976/%E6%B6%88%E6%81%AF%E4%BD%93%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C
- * 接收企业微信发来的req
- * 识别 msg_signature,timestamp,nonce,echostr
- * verify if msg_signature is right and callback msg decrypted by echostr
- * @module verifyUrl  - 企业微信验证URL
- * @param req {object} - from corpweixin
- * @param callback - callback functions
- * @return callback (err,result)  result is like {"isFromCorpweixin" : true , "msg" : msg}
- * @example
- * var verifyUrl = function(req,corpInfo,callback){
- *  ......
- *  };
+ * Created by Administrator on 2018/4/25.
+
  */
-'use strict';
-const pageName = 'verifyUrl';
-const com = require ('moonlight_function_common');
-const crypto=com.crypto;
-const sha1=crypto.sha.sha1;
-const aes =crypto.aes;
+"use strict";
+var pageName="test_verify_url";
+
+var corpweixin = require('./corpweixin');
+//----------------------------------------------------------------------------------------------------------------------
+
+var corpweixin = require ('./corpweixin');
+
+var corpId = "wwf54870d97f9ee496";   //企业微信：深圳XX公司
+//var corpsecret = "g3_EqQQtTvWMaOi7HoWZ4-0oqDExr9i3-D-QcXc7Un4";   //通讯录
+var corpSecret="wE12G6DxXXDGI71khHpEaOBBRulpX4hqwCqBDkOLTM8"; //机器人
+var token = 'moonlight';
+
+var encodingAesKey = 'tu11ooBABHM7AToEQkEyYsKKOyHvvahhWROnyrPXlUC';
 
 
+var msg_signature='5b507d81ef0bea14c051bc644a5d11ed3f1cf669';
 
+var timestamp=1526084034;
+var nonce=1526201506;
 
-var verifyUrl = function(req,corpInfo,callback){
-
-    // identify ? req param
-
-    var signature =req.query.msg_signature;
-    var timestamp =req.query.timestamp;
-    var nonce= req.query.nonce;
-    var echostr = req.query.echostr;
-
-    console.log (pageName + ':req.query:' + signature + ':' + timestamp + ':'+ nonce + ':' +echostr);
-
-    //corp infomation from corpweixin
-    const corpId = corpInfo.corpId;
-    const token = corpInfo.token;
-    const encodingAesKey=corpInfo.encodingAesKey;
-
-    // Decode base64 encodingAesKey
-    var sEncodingAesKey = encodingAesKey + '=';
-    var bAesKey=Buffer.from (sEncodingAesKey,'base64');
-    console.log( pageName + ':bAesKey: ' + bAesKey + ':lenght:' + bAesKey.length);
-    // Fetch front 16 byte to iv
-    var bIv = bAesKey.slice(0,16);
-    console.log (pageName + ':bIv: ' + bIv + ':length:' + bIv.length);
-    // aes decrypto sEchostr output randMsg encoding: uft8
-    var randMsg = aes.decrypto(echostr,bAesKey,bIv);
-
-    // Caculate the len of msg
-    var lenCorpId = corpId.length;
-    var bRandMsg = Buffer.from(randMsg);
-    console.log(bRandMsg);
-    var lenBRandMsg= bRandMsg.length;    // len of total bRandMsg;
-
-    // Verify msg_signature
-    var arrayStr=[token,timestamp,nonce,echostr];
-    var content=arrayStr.sort().join('');
-    var devMsgSignature = sha1(content);
-    console.log (pageName + ':devMsgSignature:' + devMsgSignature);
-    if (devMsgSignature=== signature) {
-        if (lenBRandMsg > (lenCorpId + 20) ) {
-            var bMsg = bRandMsg.slice(20,(lenBRandMsg-lenCorpId));
-            var msg = bMsg.toString();
-        };
-        var result= {"isFromCorpweixin" : true , "msg" :msg};
-        console.log (pageName + ':result:' + JSON.stringify(result));
-        callback (null,result);
-
-    };
+var echostr = 'jHMzSPr7t5FlCtdjHN3UcKo+Y1nBclaCSWpVsZr3QFNvHYwmDxxhnvCIKlUj13Scw8AA5mCy9IKK4as00ikWMQ==';
+//var echostr = 'ddd';
+var corpInfo = {
+    corpId : corpId ,
+    corpSecret :corpSecret ,
+    token : token ,
+    encodingAesKey :encodingAesKey
 
 };
 
-module.exports = verifyUrl;
+var req = {"query" : {
+    echostr : echostr ,
+    "msg_signature" : msg_signature ,
+    "timestamp" : timestamp ,
+    "nonce" : nonce
 
+    }
+};
+
+var receiveMsgEvent = corpweixin.receiveMsgEvent ;
+
+
+// Test verifyUrl
+
+receiveMsgEvent.verifyUrl(corpInfo,req,function(err,sReply){
+    if (err) {
+        console.log(pageName , '----err------' ,err);
+    }
+    console.log(pageName , '----sReply-----' , sReply);
+
+});

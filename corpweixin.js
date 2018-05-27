@@ -12,54 +12,35 @@
 var pageName='corpweixin bus';
 
 
-var getAccessToken = require('./lib/access_token/get_access_token');
-exports.getAccessToken=getAccessToken;
+//----------------------------------------------------------------------------------------------------------------------
+// getAccess_token
+exports.getAccessToken=require('./lib/sub_lib/access_token/get_access_token');
 
-/*
+
 //----------------------------------------------------------------------------------------------------------------------
 //  user
-var get_user=require('./lib/get_user');
-exports.get_user=get_user;
+exports.getUser = require('./lib/address_list/user/get_user');
+exports.getDeptUserList=require('./lib/address_list/user/get_dept_user_list');
+exports.getDeptUserListDetail=require('./lib/address_list/user/get_dept_user_list_detail');
+
 
 //----------------------------------------------------------------------------------------------------------------------
 //department
-var get_dept_list=require('./lib/get_dept_list');
-exports.get_dept_list=get_dept_list;
-
-//----------------------------------------------------------------------------------------------------------------------
-//department user list
-var get_dept_user_list=require('./lib/get_dept_user_list');
-exports.get_dept_user_list=get_dept_user_list;
-
-//----------------------------------------------------------------------------------------------------------------------
-//department user list detail
-var get_dept_user_list_detail=require('./lib/get_dept_user_list_detail');
-exports.get_dept_user_list_detail=get_dept_user_list_detail;
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//get_userinfo_by_code
-var get_userinfo_by_code=require('./lib/get_userinfo_by_code');
-exports.get_userinfo_by_code=get_userinfo_by_code;
-
-*/
-//----------------------------------------------------------------------------------------------------------------------
-//material
-var material = require('./lib/material');
-exports.material = material ;
-//----------------------------------------------------------------------------------------------------------------------
-//receiveMsg
-var receiveMsg = require ('./lib/receive_msg');
-exports.receiveMsg = receiveMsg;
+exports.getDeptList = require('./lib/address_list/dept/get_dept_list');
 
 //----------------------------------------------------------------------------------------------------------------------
 //receive_msg_event
-var receiveMsgEvent = require ('./lib/receive_msg_event');
-exports.receiveMsgEvent = receiveMsgEvent;
+exports.receiveMsgEvent = require ('./lib/msg_push/receive_msg_event') ;
+//----------------------------------------------------------------------------------------------------------------------
+//sendMsg
+exports.sendMsg = require ('./lib/msg_push/send_msg') ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//material
+exports.material =  require('./lib/material/material') ;
 
 
 //----------------------------------------------------------------------------------------------------------------------
-//sendMsg
+//Authentication
 
-var sendMsg = require ('./lib/send_msg');
-exports.sendMsg = sendMsg ;
+exports.getUserInfoByCode=require('./lib/auth/get_userinfo_by_code');
