@@ -26,40 +26,25 @@ console.log(page_name,':timestamp:',timestamp);
 // ---------------------------------------------------------------------------------------------------------------------
 //Test crypto
 
-var crypto=com.crypto;
-var s = 'menghuiqiang';
 
-var sSha1=com.crypto.sha.sha1(s);
-console.log (page_name + ':sha1 s:' + sSha1);
 
-var key='key11166661111111111222222222232';
-var iv= 'key1666111133333';
-var sAes256 =  com.crypto.aes.encrypto(s,key,iv);
-console.log (page_name + ':aes256 s:' + sAes256);
-var ss = 'jwrQR8cJdOf52tr4omLUZw==';
-var bkey = Buffer.from (key);
+var key= 'tu11ooBABHM7AToEQkEyYsKKOyHvvahhWROnyrPXlUC=';
+
+
+
+//var ss = '64AtQdXE8Ihn+gqBQvFLsgs7H1uYUhwNObPn/90u7eb8mb0cNCmqJJtCFnSWLf16b8sEgPAAg7Y46baQe6g6z1uVSqufIzZ5VjmdbcUjhvuv3Rzoi0X7ejZGxNDTzpPdhOZmUrqZp8Fq48VYOTfYpsSFLsXG+AVTip93yHpNuGs6Lf9Md/y+SFayjr2aYKsEaDpz63IkBN6Fl/gx40s8ySBVoo0univUxDJ3UzDDz4fp1xukOvGrG4KGX8s5ln61M7B0P4NBZUXR9K4scrSBQKR17tLQaQC9D0RAiDA6tvwoANYGlbAiZhp3scUN5697O5DEzjvk68UVWCqGuWhbljV3L9GdbvWsJ3XCpzUtIFlJM3oD56h/VmmsITeAa0nxHryYAtJVd2P/DlPPB4ViUre067tz3QusHhFPjyaSeHogtehJMZ9mnUguf1FvG+Qg7B0gHoJ4GZkmGx1GfzGrRQ==';
+
+//var ss = 'eGVlIrGeeY4R6K5QpH0SyHe1q2UMnF/mVpB3zH2Tj080U5zp8XnDro99hwFhI3Ci5wCVkCqYG2bXMoe4tpJJokP/KdiRlQwev7QsvSBJOj7VEiPhAYo5Pw1X9flHeC1Et0NE8cgzz8vpvX0NU7qOWFFLI241JkqRP9GnBuUmD2co309YOPm94phQZV9BrPNRHVDz0+Vjr04lF/KrmphtW72yWkKOnvW1+Um+NEZqNX+wMX6W3+R8tElMgXQTJcvq14wNMTbQTB6jEPybDbdJp7O7kKz7drB7CqHYmx3CVwS3wG3xFI2bXTE8pzEqSkXgWvyMfuNY/QGyV5O2d1ymENglqnExAQxw4lP2TsCbLJFzNToEA0aGUS1QtRTWg9Tw7fZp11KR5mnVlP8SFXGtGo4pgrOcqM1k8a5Zl5IuMgI=';
+var ss = 'EDhFQahu/R2uLx5r3YxMVR5NffTt35/miWq14U5O4D1b5eLpHMjgcF3orQQZi88UxF9SM1isMaWW/kWZs52L1CssNc+aFcWzm+0VaGIY6Ct1oViKiQoVTU8m9oOflZnck/+wbKJPQNURzYuLoOlyhW8imyfOb9w+ziifqSiedQ621/XidtIWBxzulfmziupickWvqmXJrbJ46QBpc9oHZMZIp0hweP+2HajAV5tHE89u2RQltt1DlL3D0meGwbv9F/bI7sPtfcOxNM9hIrOt+mSH/cf+G6J53bz1azRJhDZLTKwaGlrqUhA8K7QIy99vmInoP/Zo1p+QuKw8PKLUjciHVowYnEBJCzJTNls/ktshYyoPZrivllWT9akVE/OvLOD9cTx5Io4q3UFE4QYvP587zoixWGCEyWGgMQJftPQljpJHeDP3VcIqXDzR9aVz3l8l7AXUDoAiVzyrQto4bQ=';
+var bkey = Buffer.from (key,'base64');
 console.log(bkey);
+// Fetch front 16 byte to iv
+var bIv = bkey.slice(0,16);
 
-var biv = Buffer.from(iv);
-console.log(biv);
-var sDeAes256 = com.crypto.aes.decrypto(ss,key,iv);
+var sDeAes256 = com.crypto.aes.decrypto(ss,bkey,bIv);
 console.log( pageName,':sDeAes256:',sDeAes256);
 
-var md5 = crypto.md5;
-md5(s,function(err,output){
-  console.log (pageName + ':md5:' + output);
-});
 
-//----------------------------------------------------------------------------------------------------------------------
-//Test xml
-var xml2json = com.xml.xml2json;
-
-var xml = "<xml><ToUserName><![CDATA[wwf54870d97f9ee496]]></ToUserName><FromUserName><![CDATA[MengHuiQiang]]></FromUserName><CreateTime>1526202917</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[好]]></Content><MsgId>1629647924</MsgId><AgentID>1000004</AgentID></xml>";
-
-xml2json(xml,function (err,jsonCallback) {
-    console.log (pageName,':json of xml :',jsonCallback);
-
-});
 
 
 

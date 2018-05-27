@@ -51,10 +51,11 @@ exports.material = material ;
 //receiveMsg
 var receiveMsg = require ('./lib/receive_msg');
 exports.receiveMsg = receiveMsg;
+
 //----------------------------------------------------------------------------------------------------------------------
-//sendMedia
-var sendMedia = require ('./lib/send_media');
-exports.sendMedia = sendMedia ;
+//receive_msg_event
+var receiveMsgEvent = require ('./lib/receive_msg_event');
+exports.receiveMsgEvent = receiveMsgEvent;
 
 
 //----------------------------------------------------------------------------------------------------------------------

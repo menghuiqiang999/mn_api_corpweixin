@@ -29,47 +29,29 @@ var corpInfo = {
     encodingAesKey : encodingAesKey
 };
 
-var imagesUrl= 'http://turing-chat.oss.tuling123.com/ef639ff694b75cf6b56f55574777c4e4.jpg' ;
-//var type = 'image' ;
-var type  = 'image';
+const  verifyUrl= corpweixin.receiveMsgEvent.verifyUrl;
+var msg_signature='5b507d81ef0bea14c051bc644a5d11ed3f1cf669';
+//                    5b507d81ef0bea14c051bc644a5d11ed3f1cf669
 
-var host = 'turing-chat.oss.tuling123.com';
-var path = '/ef639ff694b75cf6b56f55574777c4e4.jpg';
-var dir = './public/images/';
-var imageType = '.jpg';
-var dir1 = './';
-
+var timestamp=1526084034;
+var nonce=1526201506;
+//var echostr = 'Q3Z1hAmsPLk0v15+H9mdhIYmKZjtTOde6HCUj91tmqMv+F6fZtGvMeNecrdygyalV/uKzsgYqDUejyDpZVPIIQ==';
+var echostr = 'jHMzSPr7t5FlCtdjHN3UcKo+Y1nBclaCSWpVsZr3QFNvHYwmDxxhnvCIKlUj13Scw8AA5mCy9IKK4as00ikWMQ==';
 
 
 
+var req = {"query" : {
 
-downloadImage(imagesUrl,dir,imageType,function(err,fn){
-    sendMedia(corpInfo,type,dir,fn);
-});
-
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-function downloadImage (imageUrl,dir,imageType,callback){
-    var request = require('request');
-    //var request = require('http').reqquest;
-    var fs = require('fs');
-
-
-    //采用request模块，向服务器发起一次请求，获取图片资源
-    request.head(imageUrl,function(err,res,body){
-        if(err){
-            console.log(err);
-        }
-    });
-    var imageFileName = sha1(imageUrl) + imageType ;
-    request(imageUrl).pipe(fs.createWriteStream(dir + imageFileName));
-
-    var fn = imageFileName;
-    callback(null,fn);
-
+    "msg_signature" : msg_signature ,
+    "timestamp" : timestamp ,
+    "nonce" : nonce ,
+    "echostr" :echostr
+}
 };
 
+
+verifyUrl(corpInfo,req,function(err,sReply){
+
+    console.log ( pageName , ':sReply:' , sReply) ;
+
+});

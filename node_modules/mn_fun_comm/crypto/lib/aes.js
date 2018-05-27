@@ -7,7 +7,7 @@ var pageName = 'aes';
 
 var crypto = require('crypto');
 var aes = function() {};
-
+module.exports =aes;
 /**
  * 加密方法
  * @param data     需要加密的数据 encoding:utf8
@@ -37,12 +37,55 @@ aes.encrypto = function (data,key, iv) {
  * var decrypted = decrypto (crypted,key,iv);
  *
  */
-aes.decrypto = function ( crypted,key, iv) {
+aes.decrypto = function ( crypted , key, iv) {
 
-    var decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
-    decipher.setAutoPadding(true);
-    var decoded = decipher.update(crypted, 'base64', 'utf8');
-    decoded += decipher.final('utf8');
-    return decoded;
+    try {
+        var algorithm = 'aes-256-cbc' ;
+        var decipher = crypto.createDecipheriv(algorithm , key, iv);
+        decipher.setAutoPadding(true);
+        var decoded = decipher.update(crypted, 'base64', 'utf8');
+        decoded += decipher.final('utf8');
+        return decoded;
+    }
+    catch (err) {
+        console.log(pageName,'---There is an error at decrypto---',err);
+    }
+
+
 };
-module.exports =aes;
+
+aes.decryptoPaddingFalse = function ( crypted , key, iv) {
+
+    try {
+        var algorithm = 'aes-256-cbc' ;
+        var decipher = crypto.createDecipheriv(algorithm , key, iv);
+        decipher.setAutoPadding(false);
+        var decoded = decipher.update(crypted, 'base64', 'utf8');
+        decoded += decipher.final('utf8');
+        return decoded;
+    }
+    catch (err) {
+        console.log(pageName,'---There is an error at decrypto---',err);
+    }
+
+};
+
+
+aes.decryptoAes256Cbc = function(crypted , key , iv , callback){
+    var algorithm = 'aes-256-cbc' ;
+    decrptoFun( algorithm ,crypted , key , iv , callback);
+};
+
+function decrptoFun  (algorithm , crypted , key , iv , callback ) {
+    try {
+        var decipher = crypto.createDecipheriv(algorithm , key, iv);
+        decipher.setAutoPadding(false);
+        var decoded = decipher.update(crypted, 'base64', 'utf8');
+        decoded += decipher.final('utf8');
+        //console.log(pageName, '-----decoded----', decoded);
+        callback (null,decoded) ;
+    }
+    catch (err) {
+        callback(err);
+    }
+}
