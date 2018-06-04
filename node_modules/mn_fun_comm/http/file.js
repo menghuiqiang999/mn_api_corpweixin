@@ -33,9 +33,9 @@ file.upload = function (url,nameType,filePathName,fileUploadName,resCallback){
         var uploadFile = request.post(url,{headers:form.headers()},function(err,req,res){
             if (err) {
                 resCallback(err);
-                return console.err('上传失败',err);
+                return console.err('上传失败', err);
             }
-            //console.log(req);
+           
             console.log('服务器结果：', res);
             resCallback(null,res);
         });

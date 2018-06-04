@@ -72,6 +72,22 @@ example   This is example of use case
 
     var encrypted = encrypto (data,key,iv);
 
+####encryptoPkcs7
+
+输入buf   对buffer 进行pkcs7方式进行补位，然后进行aes -256- cbc 方式
+进行加密
+param bufData
+param key  - 加密Key
+param iv  - 矢量
+returns crypted   加密后的字符串base64编码。
+example:
+
+    const com =  require('mn_fun_comm');
+    const encrypto = com.crypto.aes.encryptoPkcs7;
+    const encrypted1 = encrypto(buf,bAesKey,bIv);
+
+
+
 ####decrypto
 
 解密方法
@@ -88,6 +104,23 @@ example   This is example of use case
 
     var decrypted = decrypto (crypted,key,iv);
 
+####decryptoPkcs7
+输入buffer ,  对buffer 进行AES解密，然后按pkcs7方式支除补位
+param encrypted  {buffer} -需要解的buffer
+param key
+param iv
+returns 如果解密过程发生错误，返回错误，如果没有错误发生，err 为null, 返回正确的buf{buffer}
+example:
+
+    const decrypto= com.crypto.aes.decryptoPkcs7;
+    const com =  require('mn_fun_comm');
+    const [err,buf] =decrypto(encrypted,bAesKey,bIv);
+        if (err) {
+            return console.log(err);
+        }
+    console.log(buf);
+
+
 ###md5
 module md5   - the result is UperCase
 
@@ -102,6 +135,9 @@ example
     md5(input,function(err,output){
         ......
     };
+
+
+
 
 ###sha
 ####sha1

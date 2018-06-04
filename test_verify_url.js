@@ -54,3 +54,11 @@ receiveMsgEvent.verifyUrl(corpInfo,req,function(err,sReply){
     console.log(pageName , '----sReply-----' , sReply);
 
 });
+
+receiveMsgEvent.verifyUrlPkcs7(corpInfo,req,function(err,sReply){
+    if (err) {
+        console.log(pageName , '----err--Pkcs7----' ,err);
+    }
+    console.log(pageName , '----sReply--- Pkcs7--' , sReply);
+
+});
